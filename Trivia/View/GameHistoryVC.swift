@@ -37,15 +37,15 @@ class GameHistoryVC: UIViewController {
     }
     
     func fetchData(){
-        fetchGameData { (result) in
+        fetchGameData { [weak self] (result) in
             switch result {
             case .success(let managedObjects):
-                self.historyData = managedObjects
+                self?.historyData = managedObjects
                 DispatchQueue.main.async {
-                    self.tableViewData.reloadData()
+                    self?.tableViewData.reloadData()
                 }
             case .failure(let err):
-                self.showOkAlertWithHandler(err.localizedDescription) {
+                self?.showOkAlertWithHandler(err.localizedDescription) {
                 }
             }
         }

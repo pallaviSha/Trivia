@@ -31,13 +31,13 @@ class ChooseFlagColorVC: UIViewController {
     
     @IBAction func tapFinish(_ sender: UIButton) {
         if validate() {
-            self.saveGameData { (result) in
+            self.saveGameData { [weak self] (result) in
                 switch result {
                 case .success(_):
-                    self.retartGame()
+                    self?.retartGame()
                     break
                 case .failure(let err):
-                    self.showOkAlertWithHandler(err.localizedDescription) {
+                    self?.showOkAlertWithHandler(err.localizedDescription) {
                     }
                 }
             }
